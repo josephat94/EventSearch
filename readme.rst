@@ -36,10 +36,13 @@ Para poder hacer uso del sistema necesitas tener la base de datos cargada en tu 
 Dicha base de datos se encuentra dentro de la carpeta /DB
 En el archivo database.php viene el usuario que tienes que crear para hacer uso de la base de datos,
 dichos campos los puedes cambiar libremente
+
 *******
 License
 *******
+
 por el momento solo tenemos la de Dios
+
 *********
 Resources
 *********
