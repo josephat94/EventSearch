@@ -1,23 +1,16 @@
 ###################
-What is CodeIgniter
+Que EVENT-SEARCH
 ###################
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+Este proyecto es un Servidor Rest realizado en PHP con CODE igniter,
+para poder hacer uso de el solo necesitas copiarte el repositorio en una carpeta dentro de tu servidor local
+o de producción
 
 *******************
-Release Information
+Información de versión
 *******************
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
-
+Esta es la primera version Beta del servidor REST de Event-Search
 **************************
 Changelog and New Features
 **************************
@@ -39,16 +32,14 @@ issues, as well as missing features.
 Installation
 ************
 
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
-
+Para poder hacer uso del sistema necesitas tener la base de datos cargada en tu Mysql.
+Dicha base de datos se encuentra dentro de la carpeta /DB
+En el archivo database.php viene el usuario que tienes que crear para hacer uso de la base de datos,
+dichos campos los puedes cambiar libremente
 *******
 License
 *******
-
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
-
+por el momento solo tenemos la de Dios
 *********
 Resources
 *********
@@ -59,8 +50,6 @@ Resources
 -  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
 -  `Community Slack Channel <https://codeigniterchat.slack.com>`_
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
 
 ***************
 Acknowledgement
