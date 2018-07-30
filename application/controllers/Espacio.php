@@ -38,7 +38,7 @@ $ArregloCompleto= array();
     foreach ($Espacios as $espacio) {
 
      $llave=$espacio['pk_espacio'];
-        $query= $this->db->query('SELECT * FROM `imagen` WHERE fk_espacio = '.$llave);
+        $query= $this->db->query('SELECT * FROM `imagen` WHERE fk_espacio = '.$llave.' limit 1' );
         $Imagenes= $query->result_array();
         $obj= new stdClass();
         $obj->Espacio= $espacio;
@@ -55,8 +55,44 @@ $this->response($respuesta);
 
   }  
 
+public function getDetalleEspacio_get($pk_Espacio){
+//Se selecciona espacio por llave
+    $query= $this->db->query('SELECT * FROM `Espacio` WHERE pk_espacio='. $pk_Espacio);
+
+ $Espacios= $query->result_array();
 
 
+    $array_final=array();
+    $obj= new stdClass();
+    foreach($Espacios as $espacio){
+
+        //Se guarda el espacio en el objeto 
+
+        $obj->Espacio= $espacio;
+
+        $llave=$espacio['pk_espacio'];
+        //SE obtienen las imagenes del espacio seleccionado y se guarda en el objeto
+        $query= $this->db->query('SELECT * FROM `imagen` WHERE fk_espacio = '.$llave);
+        $Imagenes= $query->result_array();
+        $obj->Imagenes= $Imagenes;
+        
+        //Se obtienen los paquetes del espacio Seleecionado y se guarda en el objeto
+        $query2= $this->db->query('SELECT * FROM `paquete` WHERE fk_espacio = '.$llave);
+        $Paquetes= $query2->result_array();
+        $obj->Paquetes= $Paquetes;
+    
+  
+
+    }
+
+    //Se guarda el objeto en el array para retornarlo
+    array_push($array_final, $obj);
+
+    //Se retorna el array final con  los elementos añadidos (espacio, imagenes y paquetes)
+    $respuesta= array("ERROR"=>FALSE, "DATA_CURRENT"=>$array_final);
+$this->response($respuesta);
+
+}
 
     
 }

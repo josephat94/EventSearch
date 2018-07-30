@@ -46,7 +46,7 @@ if(!isset($usuario)){
 //TOKEN
 
 $token= bin2hex(openssl_random_pseudo_bytes(20));
-$token= hash('ripemd160', $data['correo']);
+//$token= hash('ripemd160', $data['correo']);
 
 
 
