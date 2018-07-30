@@ -8,7 +8,8 @@ use Restserver\libraries\REST_Controller;
 class Espacio extends REST_Controller {
 
 
-    public function __construct() { 
+
+public function __construct() { 
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
 header("Access-Control-Allow-Origin: *");
@@ -92,7 +93,99 @@ public function getDetalleEspacio_get($pk_Espacio){
     $respuesta= array("ERROR"=>FALSE, "DATA_CURRENT"=>$array_final);
 $this->response($respuesta);
 
+
 }
+
+
+
+public function getEspaciosFiltros_post(){
+
+    $data= $this->post();
+    $parametros= new stdClass();
+$busqueda="";
+    if(isset($data['ciudad'])&&$data['ciudad']!=null){
+        $busqueda=  $parametros->ciudad= " municipio = '".$data['ciudad']."'"; 
+        
+       }
+    else{
+        $parametros->ciudad=null;
+    }
+
+    if(isset($data['presupuesto'])&&$data['presupuesto']!=null){
+        if(strlen ( $busqueda )!=0){
+
+$busqueda= $busqueda. $parametros->precio= " AND precio_minimo <= ".$data['presupuesto'].' '; 
+        }else{
+            $busqueda= $busqueda. $parametros->precio= " precio_minimo <= ".$data['presupuesto'].' '; 
+
+        }
+       }else{
+        $parametros->precio= null;
+    }
+
+    if(isset($data['limite'])&& $data['limite']!=null){
+        
+        if(strlen ( $busqueda )!=0){
+            $busqueda= $busqueda. $parametros->limite=" AND limite <= ".$data['limite'].' '; 
+            
+        }else{
+
+            $busqueda= $busqueda. $parametros->limite=" limite <= ".$data['limite'].' '; 
+        }
+       }else{
+        $parametros->limite= null;
+    }
+
+    if(isset($data['categoria'])&& $data['categoria']!=null){
+        
+        if(strlen ( $busqueda )!=0){
+            $busqueda= $busqueda.  $parametros->categoria=" AND  categoria = '".$data['categoria']."' ";
+
+
+        }else{
+            $busqueda= $busqueda.  $parametros->categoria=" categoria = '".$data['categoria']."' ";
+
+        }
+       }else{
+        $parametros->categoria= null;
+    }
+
+
+
+$sql= "SELECT * FROM Espacio WHERE ".$busqueda;
+
+$query= $this->db->query($sql);
+
+
+
+
+$Espacios= $query->result_array();
+$ArregloCompleto= array();
+
+
+
+    foreach ($Espacios as $espacio) {
+
+     $llave=$espacio['pk_espacio'];
+        $query= $this->db->query('SELECT * FROM `imagen` WHERE fk_espacio = '.$llave.' limit 1' );
+        $Imagenes= $query->result_array();
+        $obj= new stdClass();
+        $obj->Espacio= $espacio;
+        $obj->Imagenes= $Imagenes;
+
+array_push($ArregloCompleto,$obj);
+
+    }
+
+$respuesta= array("ERROR"=>FALSE, "DATA_CURRENT"=>$ArregloCompleto);
+
+$this->response($respuesta);
+}
+
+
+
+
+
 
     
 }
