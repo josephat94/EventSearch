@@ -76,4 +76,36 @@ $respuesta = array(
         }
         $this->response($respuesta);
     }
+
+
+    public function BorrarReservacion_post(){
+
+        $data = $this->post();
+
+        if (isset($data['pk_reservacion']) ){
+
+
+            $sql = "DELETE from  reservacion  WHERE pk_reservacion=".$data['pk_reservacion'];
+            $this->db->query($sql);
+
+            $respuesta = array(
+                "ERROR" => FALSE,
+            
+                "DATA_CURRENT" => $this->db->affected_rows()
+            );
+
+        }else{
+
+            $respuesta = array(
+                "ERROR" => true,
+                "DATA_CURRENT" => "ERROR en los datos recibidos"
+            );
+
+        }
+    
+
+
+
+        $this->response($respuesta);
+    }
 }

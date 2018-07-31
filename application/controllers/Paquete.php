@@ -45,4 +45,33 @@ $respuesta = array(
         }
         $this->response($respuesta);
     }
+
+
+
+
+public function getPaquetesEspacio_post(){
+
+$data=$this->post();
+
+if (isset($data['fk_espacio']) ) {
+
+    $sql = "SELECT * FROM paquete WHERE fk_espacio= ". $data['fk_espacio'];
+  $query=   $this->db->query($sql);
+  $respuesta = array(
+    "ERROR" => FALSE,
+    "DATA_CURRENT" => $query->result_array()
+);
+
+}else{
+
+    $respuesta = array(
+        "ERROR" => TRUE,
+        "DATA_CURRENT" => "ERROR en los datos recibidos"
+    );
+
+}
+$this->response($respuesta);
+}
+
+
 }

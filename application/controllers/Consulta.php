@@ -15,5 +15,40 @@ header("Access-Control-Allow-Origin: *");
         parent:: __construct();
         $this->load->database();
     }
+ 
     
+
+    
+public function AgregarConsulta_post(){
+$data= $this->post();
+
+if (isset($data['fk_espacio']) && isset($data['fk_usuario']) 
+) {
+
+    $sql = "INSERT INTO Consulta (fk_espacio,fk_usuario, fecha ) VALUES (".$data['fk_espacio'] .",".$data['fk_usuario'] .",now())";
+
+    $this->db->query($sql);
+
+
+    $respuesta = array(
+        "ERROR" => FALSE,
+    
+        "DATA_CURRENT" => $this->db->affected_rows());
+
+}else{
+
+
+    $respuesta= array("ERROR"=>TRUE, "ERROR en los datos ingresados");
+}
+
+
+$this->response($respuesta);
+
+}
+
+
+
+
+
+
 }
