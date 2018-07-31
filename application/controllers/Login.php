@@ -82,7 +82,7 @@ public function singleRegister_post(){
         $sql = "INSERT INTO usuario (correo, nombre, pass,categoria ) VALUES ('".$data['correo']."', '".$data['nombre']."', '".$data['pass']."', '".$data['categoria']."' )";
         $this->db->query($sql);
         $respuesta= array("ERROR"=>FALSE, "MSGE"=>$this->db->affected_rows() );
-        $this->response($respuesta, REST_Controller::HTTP_BAD_REQUEST);
+        $this->response($respuesta);
         return;
     }
 

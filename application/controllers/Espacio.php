@@ -49,7 +49,7 @@ array_push($ArregloCompleto,$obj);
 
     }
 
-$respuesta=array("Error"=>"FALSE", "Espacios"=>$ArregloCompleto);
+$respuesta=array("Error"=>"FALSE", "DATA_CURRENT"=>$ArregloCompleto);
 
 
 $this->response($respuesta);
@@ -181,6 +181,9 @@ $respuesta= array("ERROR"=>FALSE, "DATA_CURRENT"=>$ArregloCompleto);
 
 $this->response($respuesta);
 }
+
+
+
 
 
 
