@@ -26,7 +26,7 @@ class Paquete extends REST_Controller
         if (isset($data['fk_espacio']) && isset($data['nombre']) &&
             isset($data['descripcion']) && isset($data['precio']) && isset($data['personas'])) {
 
-// aqui se debe insertar el espacio
+// aqui se debe insertar el paquete para el espacio
 
 $sql = "INSERT INTO paquete (nombre, descripcion, precio,personas, fk_espacio, fecha_creacion ) VALUES ('".$data['nombre']."', '".$data['descripcion']."', ".$data['precio'].", ".$data['personas'].", ".$data['fk_espacio'] .", now() )";
 $this->db->query($sql);
@@ -36,26 +36,13 @@ $respuesta = array(
     "ERROR" => FALSE,
 
     "DATA_CURRENT" => $this->db->affected_rows()
-
 );
-
         } else {
-
             $respuesta = array(
                 "ERROR" => true,
-
                 "DATA_CURRENT" => "ERROR en los datos recibidos"
-
             );
-
         }
-
-
-
-
-
         $this->response($respuesta);
-
-
     }
 }
