@@ -55,7 +55,9 @@ $respuesta=array("Error"=>"FALSE", "DATA_CURRENT"=>$ArregloCompleto);
 $this->response($respuesta);
 
   }  
-
+//Este sservicio trae los detalles de un espacio 
+//Es decir trae la info del espacio, sus imagenes  y los paquetes
+// Aun necesita traer las fechas disponibles
 public function getDetalleEspacio_get($pk_Espacio){
 //Se selecciona espacio por llave
     $query= $this->db->query('SELECT * FROM `Espacio` WHERE pk_espacio='. $pk_Espacio);
@@ -97,7 +99,9 @@ $this->response($respuesta);
 }
 
 
-
+//Este servicio realiza la consulta de espacios por filtros
+//Puede recibir la ciudad o el presupuesto o el limite de personas tambien la cateogria del espacio
+//PD este servicio aun necesita crecer mas debido que necesita el filtro de fechas 
 public function getEspaciosFiltros_post(){
 
     $data= $this->post();
@@ -140,8 +144,6 @@ $busqueda= $busqueda. $parametros->precio= " AND precio_minimo <= ".$data['presu
         
         if(strlen ( $busqueda )!=0){
             $busqueda= $busqueda.  $parametros->categoria=" AND  categoria = '".$data['categoria']."' ";
-
-
         }else{
             $busqueda= $busqueda.  $parametros->categoria=" categoria = '".$data['categoria']."' ";
 
@@ -183,8 +185,35 @@ $this->response($respuesta);
 }
 
 
+//En este servicio se borra un espacio 
+//Recibe la clave del espacio
+public function BorrarEspacio_post(){
+
+    $data = $this->post();
+
+    if (isset($data['pk_espacio']) ){
 
 
+        $sql = "DELETE from  espacio  WHERE pk_espacio=".$data['pk_espacio'];
+        $this->db->query($sql);
+
+        $respuesta = array(
+            "ERROR" => FALSE,
+        
+            "DATA_CURRENT" => $this->db->affected_rows()
+        );
+
+    }else{
+
+        $respuesta = array(
+            "ERROR" => true,
+            "DATA_CURRENT" => "ERROR en los datos recibidos"
+        );
+
+    }
+
+    $this->response($respuesta);
+}
 
 
 

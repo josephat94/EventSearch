@@ -16,6 +16,7 @@ header("Access-Control-Allow-Origin: *");
         $this->load->database();
     }
 
+    //Este servicio realiza el login recibe el correo y la contraseña del usuario
 public function index_post(){
 
 
@@ -69,7 +70,7 @@ return;
     }
 
 }
-
+//Aqui se hace un registro simple de un usuario
 public function singleRegister_post(){
 
     $data= $this->post();

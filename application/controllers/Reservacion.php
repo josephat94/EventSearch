@@ -19,7 +19,7 @@ header("Access-Control-Allow-Origin: *");
     
 
 
-
+//En este metodo se obtienen todas las reservaciones de un espacio
     public function getReservacion_post()
     {
         $data = $this->post();
@@ -27,7 +27,6 @@ header("Access-Control-Allow-Origin: *");
         if (isset($data['fk_espacio']) ) 
             {
 
-// aqui se debe insertar la resrvacion
 
 $sql = "SELECT * from reservacion where fk_espacio=".  $data['fk_espacio'];
 $query= $this->db->query($sql);
@@ -77,7 +76,7 @@ $respuesta = array(
         $this->response($respuesta);
     }
 
-
+//En este servicio se borra una reservacion por su PK
     public function BorrarReservacion_post(){
 
         $data = $this->post();

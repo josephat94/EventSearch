@@ -18,7 +18,10 @@ header("Access-Control-Allow-Origin: *");
  
     
 
-    
+//Este servicio nos ayudara a hacer estadisticas para 
+//Los propietarios, la idesa ses que cada vez que un usuario acceda a conocer el lugar 
+//o al contactar con el propietario se realice un insert para despues mostrar estadisticas de actividad
+// del espacio    
 public function AgregarConsulta_post(){
 $data= $this->post();
 
