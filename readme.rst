@@ -10,19 +10,19 @@ o de producción
 Información de versión
 *******************
 
-Esta es la primera version Beta del servidor REST de Event-Search
+Esta es la primera version alpha del servidor REST de Event-Search
 **************************
-Changelog and New Features
+Cambios y Actualizaciones
 **************************
 
-You can find a list of all changes for each release in the `user
+Puedes consultar la lista de cambios realizados de condeigniter en: 
 guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
 
 *******************
 Server Requirements
 *******************
 
-PHP version 5.6 or newer is recommended.
+PHP version 5.6 or newer es recomendado.
 
 It should work on 5.3.7 as well, but we strongly advise you NOT to run
 such old versions of PHP, because of potential security and performance
